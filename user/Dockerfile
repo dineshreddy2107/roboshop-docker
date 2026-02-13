@@ -1,4 +1,4 @@
-c:\Users\USER\Downloads\user-v3\package.json c:\Users\USER\Downloads\user-v3\server.jsFROM node:20
+FROM node:20
 WORKDIR /opt/server
 COPY package.json .
 COPY *.js .
