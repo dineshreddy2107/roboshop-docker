@@ -4,5 +4,6 @@ WORKDIR /opt/server
 COPY requirements.txt .
 COPY *.py .
 COPY payment.py .
+COPY payments.ini .
 RUN pip3 install -r requirements.txt
 CMD ["uwsgi", "--ini","payments.ini"]
