@@ -14,12 +14,27 @@
 # CMD ["uwsgi", "--ini","payment.ini"]
 
 
+# FROM python:3.9
+# EXPOSE 8080
+# WORKDIR /opt/server
+# COPY requirements.txt .
+# COPY *.py .
+# COPY payment.py .
+# COPY payment.ini .
+# RUN pip3 install -r requirements.txt
+# CMD ["uwsgi", "--ini","payment.ini"]
 FROM python:3.9
 EXPOSE 8080
 WORKDIR /opt/server
+
 COPY requirements.txt .
+RUN pip3 install --no-cache-dir -r requirements.txt
+
+# Install uWSGI (this is the missing piece)
+RUN pip3 install uwsgi
+
 COPY *.py .
 COPY payment.py .
 COPY payment.ini .
-RUN pip3 install -r requirements.txt
-CMD ["uwsgi", "--ini","payment.ini"]
+
+CMD ["uwsgi", "--ini", "payment.ini"]
